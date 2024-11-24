@@ -1,0 +1,6 @@
+train: train
+val: test
+nc: 10
+names: [
+  "Apple Braeburn"
+]

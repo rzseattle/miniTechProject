@@ -1,0 +1,137 @@
+                     precision    recall  f1-score   support
+
+    Grapefruit Pink       0.00      0.00      0.00       166
+     Apple Braeburn       0.00      0.00      0.00       164
+         Pepper Red       0.60      0.03      0.05       222
+              Salak       0.36      0.30      0.32       162
+      Tomato Maroon       0.00      0.00      0.00       127
+         Pear Stone       0.13      0.10      0.11       237
+              Cocos       0.00      0.00      0.00       166
+     Cherry Wax Red       0.69      0.77      0.73       164
+        Ginger Root       0.00      0.00      0.00        99
+       Cactus fruit       0.00      0.00      0.00       166
+      Tomato Yellow       0.00      0.00      0.00       153
+        Apple Red 3       0.00      0.00      0.00       144
+              Peach       0.00      0.00      0.00       164
+         Peach Flat       0.00      0.00      0.00       164
+  Cherry Wax Yellow       0.04      0.02      0.03       164
+          Carambula       0.00      0.00      0.00       166
+           Kumquats       0.00      0.00      0.00       166
+          Raspberry       0.00      0.00      0.00       166
+        Lemon Meyer       0.38      0.79      0.51       166
+               Kaki       0.08      0.02      0.04       166
+           Beetroot       0.17      0.01      0.02       150
+            Avocado       0.01      0.01      0.01       143
+  Potato Red Washed       0.03      0.06      0.04       151
+ Physalis with Husk       0.00      0.00      0.00       164
+         Pear Abate       0.36      0.02      0.05       166
+           Chestnut       0.00      0.00      0.00       153
+              Dates       0.59      0.33      0.42       166
+      Grape White 3       0.37      0.29      0.32       164
+Apple Red Delicious       0.00      0.00      0.00       166
+         Grape Pink       0.00      0.00      0.00       164
+           Tomato 2       0.12      0.36      0.18       225
+        Huckleberry       0.12      0.02      0.03       166
+   Onion Red Peeled       0.00      0.00      0.00       155
+             Orange       0.80      0.21      0.33       160
+ Melon Piel de Sapo       0.00      0.00      0.00       246
+             Banana       0.00      0.00      0.00       166
+          Nectarine       0.00      0.00      0.00       164
+          Onion Red       0.00      0.00      0.00       150
+        Cauliflower       0.50      0.00      0.01       234
+             Lychee       0.00      0.00      0.00       166
+         Watermelon       0.01      0.01      0.01       157
+           Tomato 3       0.02      0.09      0.03       246
+              Lemon       0.00      0.00      0.00       164
+     Nectarine Flat       0.30      0.16      0.21       160
+     Pomelo Sweetie       0.00      0.00      0.00       153
+           Pear Red       0.25      0.27      0.26       222
+ Apple Crimson Snow       0.43      0.09      0.15       148
+             Pear 2       0.05      0.10      0.07       232
+         Strawberry       0.33      0.06      0.10       164
+   Strawberry Wedge       0.03      0.02      0.02       246
+         Granadilla       0.00      0.00      0.00       166
+         Potato Red       0.00      0.00      0.00       150
+           Maracuja       0.00      0.00      0.00       166
+             Walnut       0.30      0.16      0.21       249
+          Pineapple       0.64      0.30      0.40       166
+           Mulberry       0.00      0.00      0.00       164
+       Cantaloupe 1       0.32      0.95      0.48       164
+         Redcurrant       0.06      0.01      0.01       164
+          Mandarine       0.00      0.00      0.00       166
+       Cantaloupe 2       0.02      0.02      0.02       164
+      Grape White 4       0.37      0.18      0.25       158
+           Kohlrabi       0.02      0.06      0.03       157
+       Tomato Heart       0.68      0.07      0.12       228
+      Cucumber Ripe       0.00      0.00      0.00       130
+          Tamarillo       0.03      0.02      0.02       166
+             Pepino       0.14      0.05      0.08       166
+              Guava       0.12      0.11      0.11       166
+            Apricot       0.00      0.00      0.00       164
+           Cherry 2       0.27      0.46      0.34       246
+            Peach 2       0.08      0.05      0.06       246
+               Kiwi       0.00      0.00      0.00       156
+ Apple Red Yellow 2       0.01      0.00      0.01       219
+         Banana Red       0.52      0.30      0.38       166
+      Pepper Yellow       0.04      0.18      0.07       222
+       Pear Monster       0.10      0.36      0.16       166
+               Pear       0.00      0.00      0.00       164
+             Papaya       0.00      0.00      0.00       164
+          Blueberry       0.44      0.48      0.46       154
+       Avocado ripe       0.07      0.54      0.13       166
+           Tomato 4       0.01      0.01      0.01       160
+               Plum       0.09      0.60      0.16       151
+ Apple Red Yellow 1       0.07      0.01      0.01       164
+        Pomegranate       0.00      0.00      0.00       164
+          Nut Pecan       0.05      0.44      0.09       178
+               Corn       0.00      0.00      0.00       150
+     Apple Golden 3       0.00      0.00      0.00       161
+       Pepper Green       0.75      0.06      0.11       148
+ Banana Lady Finger       0.12      0.30      0.17       152
+    Apple Pink Lady       0.00      0.00      0.00       152
+          Mangostan       0.00      0.00      0.00       102
+      Pepper Orange       0.65      0.05      0.09       234
+             Quince       0.00      0.00      0.00       166
+      Pear Williams       0.00      0.00      0.00       166
+         Nut Forest       0.39      0.11      0.17       218
+             Plum 3       0.20      0.47      0.28       304
+           Rambutan       0.17      0.69      0.28       164
+        Pear Kaiser       1.00      0.03      0.06       102
+           Tomato 1       0.00      0.00      0.00       246
+     Apple Golden 2       0.32      0.08      0.13       164
+                Fig       0.10      0.19      0.13       234
+     Pineapple Mini       0.35      0.10      0.15       163
+              Limes       0.00      0.00      0.00       166
+           Hazelnut       0.02      0.03      0.02       157
+           Eggplant       0.66      0.50      0.57       156
+     Apple Golden 1       0.01      0.03      0.02       160
+            Tangelo       0.00      0.00      0.00       166
+          Mango Red       0.12      0.13      0.13       142
+        Apple Red 1       0.00      0.00      0.00       164
+           Physalis       0.00      0.00      0.00       164
+       Potato White       0.14      0.01      0.01       150
+ Tomato not Ripened       0.34      0.16      0.22       158
+  Tomato Cherry Red       0.13      0.05      0.08       164
+           Cherry 1       0.75      1.00      0.86       164
+     Cherry Rainier       0.07      0.17      0.10       246
+      Grape White 2       0.00      0.00      0.00       166
+        Apple Red 2       0.00      0.00      0.00       164
+       Potato Sweet       0.08      0.01      0.01       150
+        Grape White       0.16      0.40      0.22       166
+   Grapefruit White       0.55      0.53      0.54       164
+      Passion Fruit       0.00      0.00      0.00       166
+ Apple Granny Smith       0.00      0.00      0.00       164
+       Pear Forelle       0.00      0.01      0.00       234
+         Grape Blue       0.37      0.76      0.50       328
+          Corn Husk       0.33      0.51      0.40       154
+             Plum 2       0.01      0.02      0.02       142
+              Mango       0.00      0.00      0.00       166
+   Cherry Wax Black       0.56      1.00      0.71       164
+       Pitahaya Red       0.11      0.06      0.08       166
+         Clementine       0.27      0.92      0.42       166
+    Cucumber Ripe 2       0.00      0.00      0.00       156
+        Onion White       0.00      0.00      0.00       146
+
+           accuracy                           0.14     22688
+          macro avg       0.15      0.14      0.11     22688
+       weighted avg       0.16      0.14      0.11     22688

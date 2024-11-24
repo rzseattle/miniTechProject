@@ -1,0 +1,15 @@
+# Ultralytics dataset configuration file
+
+# Path to images and labels
+#path: /home/arturt/projects/miniTech/dataset
+
+# Train, validation, and test splits
+train: ./train
+val: ./val
+#test: images/test
+
+# Number of classes
+nc: 2
+
+# Class names
+names: ['Apple Braeburn', 'Apple Crimson Snow', "Apple Golden 1","Apple Golden 2", "Apple Golden 3"]
