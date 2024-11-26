@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"path"
 )
 
 func headers(w http.ResponseWriter, req *http.Request) {
@@ -20,13 +21,59 @@ func headers(w http.ResponseWriter, req *http.Request) {
 func main() {
 
 	http.HandleFunc("/test", test)
+	http.HandleFunc("/file", file)
+	http.HandleFunc("/example", example)
 
 	http.ListenAndServe(":8090", nil)
 }
 
+func example(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	label := req.URL.Query().Get("label")
+
+	f_path := path.Join("../train", label)
+	files, err := os.ReadDir(f_path)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error reading directory: %s", err), http.StatusInternalServerError)
+		return
+	}
+
+	if len(files) == 0 {
+		http.Error(w, "No files found in directory", http.StatusNotFound)
+		return
+	}
+
+	fileContent, err := os.ReadFile(path.Join("../train", label, files[0].Name()))
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error reading file: %s", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(fileContent)
+}
+
+func file(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	filePath := req.URL.Query().Get("file")
+	if filePath == "" {
+		http.Error(w, "Missing 'file' parameter", http.StatusBadRequest)
+		return
+	}
+
+	fileContent, err := os.ReadFile(filePath)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Error reading file: %s", err), http.StatusInternalServerError)
+		return
+	}
+
+	w.Write(fileContent)
+}
+
 func test(w http.ResponseWriter, req *http.Request) {
 
-	cmd := exec.Command("python3.11", "test.py")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	cmd := exec.Command("make", "test_repo")
 	cmd.Env = os.Environ()
 	cmd.Env = append(cmd.Env, "YOLO_VERBOSE=False")
 	cmd.Dir = "../"

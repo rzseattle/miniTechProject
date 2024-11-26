@@ -21,3 +21,8 @@ sudo apt-get -y install cudnn
 
 cp -r Fruit-Images-Dataset/Training train
 cp -r Fruit-Images-Dataset/Test test
+
+
+
+
+pip3 install transformers datasets torch torchvision
