@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createSwapy } from "swapy";
 
 const Weight = () => {
   const [data, setData] = useState<Response | null>(null);
@@ -9,46 +10,74 @@ const Weight = () => {
       .then((data) => setData(data));
   }, []);
 
+  useEffect(() => {
+    const container = document.querySelector(".container")!;
+    const swapy = createSwapy(container, {
+      swapMode: "hover",
+    });
+    swapy.onSwap(({ data }) => {
+      console.log("swap", data);
+      localStorage.setItem("slotItem", JSON.stringify(data.object));
+    });
+
+    swapy.onSwapEnd(({ data, hasChanged }) => {
+      console.log(hasChanged);
+      console.log("end", data);
+    });
+
+    swapy.onSwapStart(() => {
+      console.log("start");
+    });
+
+    return () => {
+      swapy.destroy();
+    };
+  }, []);
+
   return (
     <div>
-      {data != null && (
-        <>
-          {data.map((e) => {
-            return (
-              <div className=" border-[1px] border-neutral-200 mb-2 rounded-md p-2">
-                <div className="mb-2">{e.file.split("/").pop()}</div>
-                <div className="flex mb-5">
-                  <div className="w-5/12">
-                    <img
-                      src={"http://localhost:8090/file?file=" + e.file}
-                      className="max-w-full"
-                    />
+      <>
+        <div className=" border-[1px] border-neutral-200 mb-2 rounded-md p-2 container">
+          <div className="pl-10 w-full flex">
+            <div
+              className="w-[200px] h-[200px] borer-[1px] border-neutral-200 rounded-md"
+              data-swapy-slot="foo"
+            >
+              xxxx
+            </div>
+            <div className="w-5/12 pt-[400px]">
+              <img src="/public/waga.png" className="w-full" />
+            </div>
+            <div className="grow ">
+              <div className="w-[700px] flex flex-wrap align-middle items-center  ">
+                {[
+                  "banana.png",
+                  "chery.png",
+                  "orange.png",
+                  "orange2.png",
+                  "pinaple.png",
+                ].map((fruit) => (
+                  <div
+                    className="w-[200px] children:h-[200px] "
+                    data-swapy-item={fruit}
+                    key={fruit}
+                  >
+                    <img src={`/public/fruits/${fruit}`} />
                   </div>
-                  <div className="pl-10 w-full">
-                    {e.probs.map((p) => {
-                      return (
-                        <div className="flex">
-                          <div className="w-8/12">{p.label}</div>
-                          <div>{p.confidence}</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <img
-                      src={
-                        "http://localhost:8090/example?label=" +
-                        e.probs[0].label
-                      }
-                      className="max-w-full"
-                    />
-                  </div>
+                ))}
+              </div>
+
+              <div className="text-lg">Top 3</div>
+              <div className="flex">
+                <div className="flex w-1/3">
+                  <div className="w-8/12">śliwka</div>
+                  <div>3.15 pln</div>
                 </div>
               </div>
-            );
-          })}
-        </>
-      )}
+            </div>
+          </div>
+        </div>
+      </>
     </div>
   );
 };
