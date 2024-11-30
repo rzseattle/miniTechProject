@@ -211,4 +211,4 @@ def train_and_evaluate_model(model, name="", epochs=25, batch_size=50, verbose=1
 print(labels)
 print(num_classes)
 model = network(input_shape=input_shape, num_classes=num_classes)
-train_and_evaluate_model(model, name="fruit-360 model", epochs=30)
+train_and_evaluate_model(model, name="fruit-360 model", epochs=2)

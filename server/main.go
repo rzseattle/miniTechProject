@@ -26,8 +26,9 @@ func main() {
 	http.HandleFunc("/test", test)
 	http.HandleFunc("/file", file)
 	http.HandleFunc("/added", added)
-
+	fmt.Println("Server listening on port: 8090")
 	http.ListenAndServe(":8090", nil)
+
 }
 
 func added(w http.ResponseWriter, req *http.Request) {
@@ -52,7 +53,8 @@ func added(w http.ResponseWriter, req *http.Request) {
 	cmd.Dir = "../"
 	cmdOutput, err := cmd.Output()
 	if err != nil {
-		fmt.Fprintf(w, "Error: %s\n", err)
+		retJsonString, _ := json.Marshal(struct{ Error string }{Error: err.Error()})
+		fmt.Fprintf(w, "%s", retJsonString)
 		fmt.Print(err)
 		return
 	}

@@ -27,19 +27,22 @@ const Weight = () => {
       const response = await fetch("http://localhost:8090/added?file=" + fruit);
 
       const data = await response.json();
-      console.log(data);
-      setBasket((prev) => {
-        const index = prev.findIndex((i) => i.fruit === data.fruit);
-        if (index !== -1) {
-          prev[index].quantity += 1;
-          return [...prev];
-        } else {
-          return [
-            ...prev,
-            { fruit: data.fruit, quantity: 1, price: data.price },
-          ];
-        }
-      });
+      if (data.Error !== undefined) {
+        alert(data.Error);
+      } else {
+        setBasket((prev) => {
+          const index = prev.findIndex((i) => i.fruit === data.fruit);
+          if (index !== -1) {
+            prev[index].quantity += 1;
+            return [...prev];
+          } else {
+            return [
+              ...prev,
+              { fruit: data.fruit, quantity: 1, price: data.price },
+            ];
+          }
+        });
+      }
       setLoading(false);
     })();
   };
