@@ -38,6 +38,8 @@ train_dir = os.path.join(base_dir, 'Training')
 output_dir = 'models'  # root folder in which to save the the output files; the files will be under output_files/model_name
 ##############################################
 
+#print ("Base dir: ", base_dir)
+
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -50,10 +52,10 @@ else:
 num_classes = len(labels)
 
 # Save labels to a CSV file
-labels_df = pd.DataFrame(labels, columns=["Label"])
-labels_df["RandomNumber"] = np.random.uniform(10, 20, size=len(labels)).round(2)
-labels_df.to_csv("prices.csv", index=False)
-exit(0)
+# labels_df = pd.DataFrame(labels, columns=["Label"])
+# labels_df["RandomNumber"] = np.random.uniform(10, 20, size=len(labels)).round(2)
+# labels_df.to_csv("prices.csv", index=False)
+# exit(0)
 
 
 # create 2 charts, one for accuracy, one for loss, to show the evolution of these two metrics during the training process
