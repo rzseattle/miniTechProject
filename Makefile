@@ -1,12 +1,12 @@
 train_repo: 
-	@python approach/repo/train.py
+	@python3 approach/repo/train.py
 
 test_repo: 
-	@python approach/repo/test.py
+	@python3 approach/repo/test.py
 
 
 test_external: 
-	@python approach/external/test.py
+	@python3 approach/external/test.py $(FILE)
 
 test:
 	python3.11 test.py

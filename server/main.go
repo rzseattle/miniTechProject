@@ -1,12 +1,15 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"os"
 	"os/exec"
 	"path"
+	"strconv"
+	"strings"
 )
 
 func headers(w http.ResponseWriter, req *http.Request) {
@@ -22,34 +25,60 @@ func main() {
 
 	http.HandleFunc("/test", test)
 	http.HandleFunc("/file", file)
-	http.HandleFunc("/example", example)
+	http.HandleFunc("/added", added)
 
 	http.ListenAndServe(":8090", nil)
 }
 
-func example(w http.ResponseWriter, req *http.Request) {
+func added(w http.ResponseWriter, req *http.Request) {
+
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	label := req.URL.Query().Get("label")
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.WriteHeader(http.StatusOK)
 
-	f_path := path.Join("../train", label)
-	files, err := os.ReadDir(f_path)
+	if req.Method == http.MethodOptions {
+		return
+	}
+
+	file := req.URL.Query().Get("file")
+
+	f_path := path.Join("front/public/fruits", file)
+
+	fmt.Println("make", "test_external", "FILE="+f_path)
+
+	cmd := exec.Command("make", "test_external", "FILE="+f_path)
+	cmd.Env = os.Environ()
+	cmd.Dir = "../"
+	cmdOutput, err := cmd.Output()
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Error reading directory: %s", err), http.StatusInternalServerError)
+		fmt.Fprintf(w, "Error: %s\n", err)
+		fmt.Print(err)
 		return
 	}
 
-	if len(files) == 0 {
-		http.Error(w, "No files found in directory", http.StatusNotFound)
-		return
-	}
+	ret := string(cmdOutput)
 
-	fileContent, err := os.ReadFile(path.Join("../train", label, files[0].Name()))
-	if err != nil {
-		http.Error(w, fmt.Sprintf("Error reading file: %s", err), http.StatusInternalServerError)
-		return
-	}
+	parts := strings.Split(ret, "-->")
+	found := strings.Trim(parts[len(parts)-1], " \n")
+	fmt.Println("------------")
+	fmt.Println(found)
+	fmt.Println("------------")
 
-	w.Write(fileContent)
+	price := findPrice(found)
+
+	retJson := struct {
+		Fruit string  `json:"fruit"`
+		Price float64 `json:"price"`
+	}{Fruit: found, Price: price}
+	retJsonString, _ := json.Marshal(retJson)
+
+	fmt.Printf("cmdRet: %s\n", cmdOutput)
+
+	//fmt.Fprintf(w, "%s", string(cmdOutput))
+	//fmt.Fprintf(w, "%s", ret)
+	fmt.Fprintf(w, "%s", retJsonString)
+
 }
 
 func file(w http.ResponseWriter, req *http.Request) {
@@ -103,4 +132,38 @@ type CmdRet []struct {
 		Confidence float64 `json:"confidence"`
 		Label      string  `json:"label"`
 	} `json:"probs"`
+}
+
+func findPrice(fruit string) float64 {
+	pricesFile := "../assets/prices.csv"
+
+	file, err := os.Open(pricesFile)
+	if err != nil {
+		fmt.Printf("Error opening prices file: %s\n", err)
+		return 0.0
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		line := scanner.Text()
+		parts := strings.Split(line, ",")
+		if len(parts) < 2 {
+			continue
+		}
+		if parts[0] == fruit {
+			price, err := strconv.ParseFloat(parts[1], 64)
+			if err != nil {
+				fmt.Printf("Error parsing price: %s\n", err)
+				return 0.0
+			}
+			return price
+		}
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Printf("Error reading prices file: %s\n", err)
+	}
+
+	return -1.0
 }

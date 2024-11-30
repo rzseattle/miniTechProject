@@ -2,11 +2,15 @@ from transformers import AutoImageProcessor, AutoModelForImageClassification
 from PIL import Image
 import torch
 import os
+import sys
 
 # Załaduj model i procesor obrazu
 model_name = "Dharma20/vit-base-fruits-360"
 processor = AutoImageProcessor.from_pretrained(model_name)
 model = AutoModelForImageClassification.from_pretrained(model_name)
+
+
+print("Analyzing " + sys.argv[1])
 
 def classify_images(image_paths):
     """
@@ -42,15 +46,15 @@ def classify_images(image_paths):
     return results
 
 
-image_folder = "./test"
-image_paths = [os.path.join(image_folder, f) for f in os.listdir(image_folder)]
+#image_folder = "./test"
+#image_paths = [os.path.join(image_folder, f) for f in os.listdir(image_folder)]
+#predictions = classify_images(image_paths)
 
+## Wyświetlenie wyników
+#for path, label in predictions:
+    #print(f"Obraz: {path} -> Przewidziana klasa: {label}")
 
+predictions = classify_images([sys.argv[1]])
 
-
-
-predictions = classify_images(image_paths)
-
-# Wyświetlenie wyników
 for path, label in predictions:
-    print(f"Obraz: {path} -> Przewidziana klasa: {label}")
+    print(f"{path}-->{label}")
